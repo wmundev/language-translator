@@ -1,0 +1,24 @@
+name: "build-project"
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  unitTest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.x
+
+      - name: Restore Dependencies
+        run: dotnet restore language-translator.sln
+
+      - name: Build
+        run: dotnet build language-translator.sln --configuration Release --no-restore
