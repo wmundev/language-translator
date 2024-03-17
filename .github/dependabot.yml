@@ -21,7 +21,6 @@ updates:
       all_nuget_minor_patch_updates:
         update-types:
         - "minor"
-        - "patch"
     ignore:
       - dependency-name: "*"
-        update-types: ["version-update:semver-major"]
+        update-types: ["version-update:semver-major", "version-update:semver-patch"]
